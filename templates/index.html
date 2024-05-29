@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>IPL Scorigami</title>
+    <p>This plot shows the first and second innings scores of all completed IPL games, 
+        including ones decided by the Duckworth–Lewis–Stern (DLS) method.</p>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 </head>
 <body>
@@ -11,8 +13,8 @@
         fetch('/data')
             .then(response => response.json())
             .then(data => {
-                const firstInningsScores = data.map(d => d.first_innings_score);
-                const secondInningsScores = data.map(d => d.second_innings_score);
+                const firstInningsScores = data.map(d => parseInt(d.first_innings_score));
+                const secondInningsScores = data.map(d => parseInt(d.second_innings_score));
 
                 const trace = {
                     x: firstInningsScores,

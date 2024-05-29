@@ -1,15 +1,32 @@
 from flask import Flask, render_template, jsonify
-import random
+from flask_sqlalchemy import SQLAlchemy
+import pandas as pd
 
 app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///ipl_data.db'
+db = SQLAlchemy(app)
 
-def get_ipl_data():
-    # Generate 100 random scores between 40 and 300 for first innings and second innings
-    ipl_data = [
-        {"first_innings_score": random.randint(40, 300), "second_innings_score": random.randint(40, 300)}
-        for _ in range(100)  # Generate 100 matches' data
-    ]
-    return ipl_data
+class Match(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_innings_score = db.Column(db.String(255))
+    second_innings_score = db.Column(db.String(255))
+
+def load_data_to_db(csv_file):
+    df = pd.read_csv(csv_file)
+    matches_data = df.to_dict(orient='records')
+    
+    # Create all tables if they don't exist
+    db.create_all()
+
+    for match in matches_data:
+        db.session.add(Match(first_innings_score=match['1st_inning_score'], 
+                             second_innings_score=match['2nd_inning_score']))
+    db.session.commit()
+
+
+@app.before_request
+def create_tables():
+    db.create_all()
 
 @app.route('/')
 def index():
@@ -17,8 +34,13 @@ def index():
 
 @app.route('/data')
 def data():
-    ipl_data = get_ipl_data()
+    matches = Match.query.all()
+    ipl_data = [{"first_innings_score": match.first_innings_score, 
+                  "second_innings_score": match.second_innings_score} 
+                 for match in matches]
     return jsonify(ipl_data)
 
 if __name__ == '__main__':
+    with app.app_context():
+        load_data_to_db('all ipl seasons (completed matches only).csv')
     app.run(debug=True)

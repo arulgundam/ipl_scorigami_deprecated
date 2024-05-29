@@ -3,52 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>IPL Scorigami</title>
-    <p>This plot shows the first and second innings scores of all completed IPL games, 
-        including ones decided by the Duckworth–Lewis–Stern (DLS) method.</p>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="plot"></div>
-    <script>
-        fetch('/data')
-            .then(response => response.json())
-            .then(data => {
-                const firstInningsScores = data.map(d => parseInt(d.first_innings_score));
-                const secondInningsScores = data.map(d => parseInt(d.second_innings_score));
+    <div class="container-fluid mt-5">
+        <h1 class="text-center mb-4">IPL Scorigami</h1>
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-body">
+                        <p class="card-text">This plot shows the first and second innings scores of all completed IPL games, including ones decided by the Duckworth–Lewis–Stern (DLS) method.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-10 offset-md-1">
+                <div class="card">
+                    <div class="card-body plot-container" id="plot"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                const trace = {
-                    x: firstInningsScores,
-                    y: secondInningsScores,
-                    mode: 'markers',
-                    marker: {
-                        size: 12,  // Set the size of the square (adjust as needed)
-                        symbol: 'square',  // Use square symbol for markers
-                        line: {
-                            color: 'rgba(217, 217, 217, 0.14)',
-                            width: 0.5
-                        },
-                        opacity: 0.8
-                    },
-                    type: 'scatter'
-                };
-
-                const layout = {
-                    title: 'IPL Scorigami',
-                    xaxis: {
-                        title: 'First Innings Score',
-                        range: [40, 300]  // Set the range for x-axis (adjust as needed)
-                    },
-                    yaxis: {
-                        title: 'Second Innings Score',
-                        range: [40, 300]  // Set the range for y-axis (adjust as needed)
-                    },
-                    hovermode: 'closest',  // Show closest data on hover
-                    width: 1200,  // Set the width of the plot (adjust as needed)
-                    height: 800  // Set the height of the plot (adjust as needed)
-                };
-
-                Plotly.newPlot('plot', [trace], layout);
-            });
-    </script>
+    <!-- Plotly JS and Fetch Data -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>

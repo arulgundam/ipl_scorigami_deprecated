@@ -1,0 +1,37 @@
+/* styles.css */
+
+/* Body and Container Styles */
+body {
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+.container-fluid {
+    background-color: #ffffff; /* White background for container */
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+/* Card Styles */
+.card {
+    border: 1px solid #ced4da; /* Light grey border */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+}
+
+/* Center Card Content */
+.card-body {
+    text-align: center;
+}
+
+/* Color for Text and Links */
+h1, .card-text {
+    color: #343a40; /* Dark grey text */
+}
+
+a {
+    color: #007bff; /* Blue link color */
+}
+
+a:hover {
+    color: #0056b3; /* Dark blue hover color */
+}

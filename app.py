@@ -42,5 +42,5 @@ def data():
 
 if __name__ == '__main__':
     with app.app_context():
-        load_data_to_db('all ipl seasons (completed matches only).csv')
+        load_data_to_db('data/all ipl seasons (completed matches only).csv')
     app.run(debug=True)

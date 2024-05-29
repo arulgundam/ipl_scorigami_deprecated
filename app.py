@@ -4,31 +4,12 @@ import random
 app = Flask(__name__)
 
 def get_ipl_data():
-    # Generate repeated dummy data with occurrences
+    # Generate 100 random scores between 40 and 300 for first innings and second innings
     ipl_data = [
         {"first_innings_score": random.randint(40, 300), "second_innings_score": random.randint(40, 300)}
         for _ in range(100)  # Generate 100 matches' data
     ]
-    
-    # Add occurrences based on repeated scores
-    score_counts = {}
-    for match in ipl_data:
-        score = (match['first_innings_score'], match['second_innings_score'])
-        if score in score_counts:
-            score_counts[score] += 1
-        else:
-            score_counts[score] = 1
-    
-    # Merge data with occurrences
-    ipl_data_with_occurrences = []
-    for match in ipl_data:
-        score = (match['first_innings_score'], match['second_innings_score'])
-        occurrences = score_counts[score]
-        match_with_occurrences = match.copy()
-        match_with_occurrences['occurrences'] = occurrences
-        ipl_data_with_occurrences.append(match_with_occurrences)
-    
-    return ipl_data_with_occurrences
+    return ipl_data
 
 @app.route('/')
 def index():

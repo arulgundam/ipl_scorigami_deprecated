@@ -4,31 +4,8 @@
     <meta charset="UTF-8">
     <title>IPL Scorigami</title>
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <style>
-        body {
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-
-        #plot {
-            width: 100%;
-            height: 600px;
-            background-color: #fff;
-        }
-
-        .plot-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .axis-label {
-            font-size: 16px;
-        }
-    </style>
 </head>
 <body>
-    <div class="plot-title">IPL Scorigami</div>
     <div id="plot"></div>
     <script>
         fetch('/data')
@@ -36,31 +13,36 @@
             .then(data => {
                 const firstInningsScores = data.map(d => d.first_innings_score);
                 const secondInningsScores = data.map(d => d.second_innings_score);
-                const occurrences = data.map(d => d.occurrences);
 
                 const trace = {
                     x: firstInningsScores,
                     y: secondInningsScores,
-                    z: occurrences, // Third axis for occurrences
                     mode: 'markers',
                     marker: {
-                        size: 10,
-                        color: 'rgb(51, 153, 255)', // Adjust color as needed
+                        size: 12,  // Set the size of the square (adjust as needed)
+                        symbol: 'square',  // Use square symbol for markers
+                        line: {
+                            color: 'rgba(217, 217, 217, 0.14)',
+                            width: 0.5
+                        },
                         opacity: 0.8
                     },
-                    type: 'scatter3d'
+                    type: 'scatter'
                 };
 
                 const layout = {
                     title: 'IPL Scorigami',
-                    scene: {
-                        xaxis: { title: 'First Innings Score' },
-                        yaxis: { title: 'Second Innings Score' },
-                        zaxis: { title: 'Occurrences' }
+                    xaxis: {
+                        title: 'First Innings Score',
+                        range: [40, 300]  // Set the range for x-axis (adjust as needed)
                     },
-                    width: 1200,
-                    height: 600,
-                    margin: { t: 50, b: 50, l: 50, r: 50 }
+                    yaxis: {
+                        title: 'Second Innings Score',
+                        range: [40, 300]  // Set the range for y-axis (adjust as needed)
+                    },
+                    hovermode: 'closest',  // Show closest data on hover
+                    width: 1200,  // Set the width of the plot (adjust as needed)
+                    height: 800  // Set the height of the plot (adjust as needed)
                 };
 
                 Plotly.newPlot('plot', [trace], layout);

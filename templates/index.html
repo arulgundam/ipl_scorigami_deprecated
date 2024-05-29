@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>IPL Scorigami</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <div id="plot"></div>
+    <script>
+        fetch('/data')
+            .then(response => response.json())
+            .then(data => {
+                const firstInningsScores = data.map(d => d.first_innings_score);
+                const secondInningsScores = data.map(d => d.second_innings_score);
+                const wicketsFallen = data.map(d => d.wickets_fallen);
+
+                const trace = {
+                    x: firstInningsScores,
+                    y: secondInningsScores,
+                    z: wicketsFallen,
+                    mode: 'markers',
+                    marker: {
+                        size: 12,
+                        line: {
+                            color: 'rgba(217, 217, 217, 0.14)',
+                            width: 0.5
+                        },
+                        opacity: 0.8
+                    },
+                    type: 'scatter3d'
+                };
+
+                const layout = {
+                    title: 'IPL Scorigami',
+                    scene: {
+                        xaxis: { title: 'First Innings Score' },
+                        yaxis: { title: 'Second Innings Score' },
+                        zaxis: { title: 'Wickets Fallen' }
+                    }
+                };
+
+                Plotly.newPlot('plot', [trace], layout);
+            });
+    </script>
+</body>
+</html>

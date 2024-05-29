@@ -1,15 +1,13 @@
 from flask import Flask, render_template, jsonify
+import random
 
 app = Flask(__name__)
 
 def get_ipl_data():
-    # Example data, replace with actual database query
+    # Generate 100 random scores between 40 and 300 for first innings and second innings
     ipl_data = [
-        {"first_innings_score": 180, "second_innings_score": 175, "wickets_fallen": 6},
-        {"first_innings_score": 150, "second_innings_score": 140, "wickets_fallen": 8},
-        {"first_innings_score": 200, "second_innings_score": 180, "wickets_fallen": 5},
-        {"first_innings_score": 160, "second_innings_score": 165, "wickets_fallen": 7},
-        {"first_innings_score": 170, "second_innings_score": 160, "wickets_fallen": 9},
+        {"first_innings_score": random.randint(40, 300), "second_innings_score": random.randint(40, 300)}
+        for _ in range(100)  # Generate 100 matches' data
     ]
     return ipl_data
 

@@ -1,16 +1,23 @@
-/* Body and Container Styles */
+/* Body Styles */
 body {
-    background-color: #f8f9fa; /* Light grey background */
+    background-color: #ffffff; /* White background */
 }
 
-.container-fluid {
-    background-color: #ffffff; /* White background for container */
+/* Main Container Styles */
+.main-container {
     padding-top: 30px;
     padding-bottom: 30px;
+    background-color: #f8f9fa; /* Light grey background for main container */
+}
+
+/* Plot Container Styles */
+.plot-container {
+    background-color: #f8f9fa; /* Light grey background for plot */
 }
 
 /* Card Styles */
-.card {
+.main-card, .jon-bois-card {
+    background-color: #f8f9fa; /* Light grey background for cards */
     border: 1px solid #ced4da; /* Light grey border */
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Soft shadow effect */

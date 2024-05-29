@@ -13,7 +13,7 @@ fetch('/data')
                 size: 8,
                 symbol: 'square',
                 line: {
-                    color: 'rgba(217, 217, 217, 0.14)',
+                    color: 'rgb(30, 136, 229)',
                     width: 0.5
                 },
                 opacity: 0.8

@@ -1,6 +1,6 @@
 # IPL Scorigami
 
-This is a web application to visualize unique score-wicket combinations in IPL matches.
+This is a web application to visualize unique score combinations in IPL matches.
 
 ## Setup
 

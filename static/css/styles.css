@@ -1,13 +1,6 @@
 /* Body Styles */
 body {
-    background-color: #ffffff; /* White background */
-}
-
-/* Main Container Styles */
-.main-container {
-    padding-top: 30px;
-    padding-bottom: 30px;
-    background-color: #f8f9fa; /* Light grey background for main container */
+    background-color: #f8f9fa; /* White background */
 }
 
 /* Plot Container Styles */

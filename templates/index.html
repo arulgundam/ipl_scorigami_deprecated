@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IPL Scorigami</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -9,7 +10,10 @@
     <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet">
 </head>
 <body>
-    <h1 class="text-center mt-4 mb-4">IPL Scorigami</h1>
+    <div class="blue-banner">
+        <h1 class="text-center mt-2 mb-2">IPL Scorigami</h1>
+    </div>
+    <div class="container-fluid main-container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
                 <div class="card main-card">

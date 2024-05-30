@@ -20,6 +20,8 @@ body {
 
 .plot-container {
     background-color: #f8f9fa; /* Light grey background for plot */
+    width: 100%;
+    overflow: scroll;
 }
 
 /* Card Styles */

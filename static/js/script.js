@@ -32,7 +32,6 @@ fetch('/data')
                 range: [40, 300]
             },
             hovermode: 'closest',
-            width: 1200,
             height: 600,
             dragmode: false,
             selectdirection: 'none'
